@@ -2,7 +2,7 @@
 
 const navigation = [
     { name: 'Covid Long Term', href: '/covid-long-term' },
-    { name: 'Query 2 Link', href: '#' },
+    { name: 'Price Change Since Covid', href: '/price-change-since-covid' },
     { name: 'Query 3 Link', href: '#' },
     { name: 'Query 4 Link', href: '#' },
     { name: 'Query 5 Link', href: '#' },
@@ -12,19 +12,22 @@ const navigation = [
 export function Search() {
     return (
         <div>
-            <label htmlFor="email" className="sr-only">
-                Email
+            <label htmlFor="start-date" className="sr-only">
+                Date
             </label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Search or sumn"
-            />
+            <details className="dropdown">
+                <summary className="m-1 btn text-gray-900 ring-gray-300 focus:ring-2 focus:ring-inset">Airline</summary>
+                <ul className="block w-half rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6">
+                    <li><a>Southwest</a></li>
+                    <li><a>Jetblue</a></li>
+                </ul>
+            </details>
         </div>
+
+
     )
 }
+
 export default function Home() {
 
     return (
@@ -48,14 +51,15 @@ export default function Home() {
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                Flight Database
+                                Airline Price Changes Since Covid
                             </h1>
                         </div>
 
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Search/>
+
                             <button
-                               className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
+                                className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                                 Submit <span aria-hidden="true">→</span>
                             </button>
                         </div>
