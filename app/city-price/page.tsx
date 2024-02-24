@@ -1,15 +1,14 @@
-
 export function Search() {
     return (
         <div>
             <label htmlFor="start-date" className="sr-only">
-                Date
+                City
             </label>
             <details className="dropdown">
-                <summary className="m-1 btn text-gray-900 ring-gray-300 focus:ring-2 focus:ring-inset">Airline</summary>
+                <summary className="m-1 btn text-gray-900 ring-gray-300 focus:ring-2 focus:ring-inset">Departure City</summary>
                 <ul className="block w-half rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6">
-                    <li><a>Southwest</a></li>
-                    <li><a>Jetblue</a></li>
+                    <li><a>LA</a></li>
+                    <li><a>Miami</a></li>
                 </ul>
             </details>
         </div>
@@ -17,14 +16,16 @@ export function Search() {
 }
 
 export default function Home() {
+
     return (
         <div className="bg-white">
+
             <div className="relative isolate pt-14">
                 <div className="py-24 sm:py-32 lg:pb-40">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                Airline Price Changes Since Covid
+                                Departure City Price Change by Cancellations
                             </h1>
                         </div>
 

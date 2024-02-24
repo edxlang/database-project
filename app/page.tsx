@@ -1,48 +1,9 @@
-'use client'
+import { Header } from '@/app/Components/Header'
+import { TextField } from '@/app/Components/TextField'
 
-const navigation = [
-    { name: 'Covid Long Term', href: '/covid-long-term' },
-    { name: 'Query 2 Link', href: '#' },
-    { name: 'Query 3 Link', href: '#' },
-    { name: 'Query 4 Link', href: '#' },
-    { name: 'Query 5 Link', href: '#' },
-]
-
-
-export function Search() {
-    return (
-        <div>
-            <label htmlFor="email" className="sr-only">
-                Email
-            </label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Search or sumn"
-            />
-        </div>
-    )
-}
 export default function Home() {
-
     return (
         <div className="bg-white">
-            <header className="absolute inset-x-0 top-0 z-50">
-                <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-                    <div className="flex lg:flex-1"/>
-                    <div className="hidden lg:flex lg:gap-x-12">
-                        {navigation.map((item) => (
-                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
-                    <div className="hidden lg:flex lg:flex-1 lg:justify-end"/>
-                </nav>
-            </header>
-
             <div className="relative isolate pt-14">
                 <div className="py-24 sm:py-32 lg:pb-40">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -53,7 +14,7 @@ export default function Home() {
                         </div>
 
                         <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <Search/>
+                            <TextField/>
                             <button
                                className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                                 Submit <span aria-hidden="true">→</span>
@@ -65,8 +26,6 @@ export default function Home() {
                                 <img
                                     src="https://dist.neo4j.com/wp-content/uploads/20210210101155/1Rf98vgvcLle1SZvLmmIwaQ.png"
                                     alt=""
-                                    width={1200}
-                                    height={1000}
                                     className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
                                 />
                             </div>

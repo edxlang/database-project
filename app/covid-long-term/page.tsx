@@ -1,16 +1,8 @@
-'use client'
-
-const navigation = [
-    { name: 'Covid Long Term', href: '/covid-long-term' },
-    { name: 'Price Change Since Covid', href: '/price-change-since-covid' },
-    { name: 'Query 3 Link', href: '#' },
-    { name: 'Query 4 Link', href: '#' },
-    { name: 'Query 5 Link', href: '#' },
-]
+import { Header } from "@/app/Components/Header";
 
 export function Search() {
     return (
-        <div>
+        <div className="bg-white">
             <label htmlFor="start-date" className="sr-only">
                 Date
             </label>
@@ -38,23 +30,9 @@ export function Search() {
 }
 
 export default function Home() {
-
     return (
         <div className="bg-white">
-            <header className="absolute inset-x-0 top-0 z-50">
-                <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-                    <div className="flex lg:flex-1"/>
-                    <div className="hidden lg:flex lg:gap-x-12">
-                    {navigation.map((item) => (
-                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
-                    <div className="hidden lg:flex lg:flex-1 lg:justify-end"/>
-                </nav>
-            </header>
-
+            <Header/>
             <div className="relative isolate pt-14">
                 <div className="py-24 sm:py-32 lg:pb-40">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -63,7 +41,6 @@ export default function Home() {
                                 Cancellations Since Covid
                             </h1>
                         </div>
-
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Search/>
 
