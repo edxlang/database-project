@@ -1,4 +1,5 @@
 const navigation = [
+    { name: 'Home', href: '/' },
     { name: 'Covid Long Term', href: '/covid-long-term' },
     { name: 'Price Change Since Covid', href: '/price-change-since-covid' },
     { name: 'Query 3', href: '#' },
