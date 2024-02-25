@@ -2,9 +2,9 @@ const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Covid Long Term', href: '/covid-long-term' },
     { name: 'Price Change Since Covid', href: '/price-change-since-covid' },
-    { name: 'Query 3', href: '#' },
+    { name: 'Query 3', href: '/' },
     { name: 'Cancellation and Delays Affect for Flight Prices for Select City', href: '/city-price' },
-    { name: 'Query 5', href: '#' },
+    { name: 'Query 5', href: '/query5' },
 ]
 
 export function Header() {
