@@ -1,6 +1,17 @@
-import { Header } from '@/app/Components/Header'
+import getDbConnection from '@/app/db/connect.js';
+
+async function testDBConnection() {
+    try {
+        const connection = await getDbConnection();
+        console.log('Database connection successful');
+    } catch (error) {
+        console.error('Error getting database connection:', error);
+    }
+}
 
 export default function Home() {
+    testDBConnection();
+
     return (
         <div className="bg-white">
             <div className="relative isolate pt-14">
@@ -11,7 +22,7 @@ export default function Home() {
                                 Welcome to Group 6's Flights Queries Visualization. Click a link in the header to get started.
                             </h1>
                         </div>
-                        <div className="mt-16 flow-root sm:mt-24">
+                        <div className="mt-16 flow-root sm:mt-24">ç
                             <div
                                 className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 md:-m-4 md:rounded-2xl lg:p-4">
                                 <img
