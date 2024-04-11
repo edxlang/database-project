@@ -1,47 +1,30 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import handler from "@/app/api/q1/route";
+import { useState } from "react";
+import {q1} from '../types/q1'
 
-export function Search() {
-    return (
-        <div>
-            <label htmlFor="start-date" className="sr-only">
-                City
-            </label>
-            <details className="dropdown">
-                <summary className="m-1 btn text-gray-900 ring-gray-300 focus:ring-2 focus:ring-inset">Departure City</summary>
-                <ul className="block w-half rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6">
-                    <li><a>LA</a></li>
-                    <li><a>Miami</a></li>
-                </ul>
-            </details>
-        </div>
-    )
+async function fetchAirlines() {
+    const response = await fetch('/api/q1/route', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    return data.inquiries;
 }
 
 export default function Home() {
-    const [iataCodes, setIataCodes] = useState([]);
-
-    const handler = async () => {
-        const response = await fetch('/api/q1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        return data;
-    };
+    const [airlines, setAirlines] = useState<q1[]>([]);
 
     const handleSubmit = async () => {
-        const result = await handler();
-        setIataCodes(result);
+        const result = await fetchAirlines();
+        setAirlines(result);
     };
 
     return (
@@ -56,7 +39,6 @@ export default function Home() {
                         </div>
 
                         <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <Search/>
                             <button
                                 onClick={handleSubmit}
                                 className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
@@ -64,8 +46,8 @@ export default function Home() {
                             </button>
                         </div>
                         <ul>
-                            {iataCodes.map((code, index) => (
-                                <li key={index}>{code}</li>
+                            {airlines.map((airline, index) => (
+                                <li key={index}>{airline.IATACODE}</li>
                             ))}
                         </ul>
                     </div>
