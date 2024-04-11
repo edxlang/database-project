@@ -16,5 +16,11 @@ async function run() {
         console.error(err);
     }
 }
-
 module.exports = run;
+
+async function executeQuery({ query }) {
+    const connection = await getDbConnection();
+    return await connection.execute(query);
+}
+
+module.exports = executeQuery;
