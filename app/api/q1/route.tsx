@@ -1,24 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import executeQuery from "@/app/db/connect";
 import type { NextApiRequest, NextApiResponse } from 'next';
+import executeQuery from "@/app/db/connect";
 
-export async function POST(req: NextRequest, res: NextResponse) {
-    console.log("hey");
-    const formData = await new Response(req.body).json();
-
-    try  {
-        const result = await executeQuery({
-            query: "SELECT IATACODE FROM AIRPORT"
-        })
-        console.log(result);
-
-        if (res) {
-            return NextResponse.json({inquiries: result}, {status: 200})
-        } else {
-            console.error('Response object is undefined.');
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'POST') {
+        try {
+            const result = await executeQuery({ query: 'SELECT * FROM AIRPORT' }); // Replace with your actual query
+            res.status(200).json(result);
+        } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching IATACODEs.' });
         }
-
-    } catch ( error ) {
-        console.log( error );
+    } else {
+        res.status(405).json({ error: 'Method not allowed. Please use POST.' });
     }
 }

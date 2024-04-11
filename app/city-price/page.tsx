@@ -1,3 +1,8 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import handler from "@/app/api/q1/route";
+
 export function Search() {
     return (
         <div>
@@ -16,10 +21,31 @@ export function Search() {
 }
 
 export default function Home() {
+    const [iataCodes, setIataCodes] = useState([]);
+
+    const handler = async () => {
+        const response = await fetch('/api/q1', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        return data;
+    };
+
+    const handleSubmit = async () => {
+        const result = await handler();
+        setIataCodes(result);
+    };
 
     return (
         <div className="bg-white">
-
             <div className="relative isolate pt-14">
                 <div className="py-24 sm:py-32 lg:pb-40">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -31,24 +57,17 @@ export default function Home() {
 
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Search/>
-
                             <button
+                                onClick={handleSubmit}
                                 className="rounded-md bg-gray-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
                                 Submit <span aria-hidden="true">→</span>
                             </button>
                         </div>
-                        <div className="mt-16 flow-root sm:mt-24">
-                            <div
-                                className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 md:-m-4 md:rounded-2xl lg:p-4">
-                                <img
-                                    src="https://dist.neo4j.com/wp-content/uploads/20210210101155/1Rf98vgvcLle1SZvLmmIwaQ.png"
-                                    alt=""
-                                    width={1200}
-                                    height={1000}
-                                    className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                                />
-                            </div>
-                        </div>
+                        <ul>
+                            {iataCodes.map((code, index) => (
+                                <li key={index}>{code}</li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </div>
