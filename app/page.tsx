@@ -1,11 +1,27 @@
-import getDbConnection from '@/app/db/connect.js';
+import {runApp} from '@/app/db/connect';
+import oracledb from 'oracledb';
 
 async function testDBConnection() {
+    let connection;
     try {
-        const connection = await getDbConnection();
+        connection = await runApp();
         console.log('Database connection successful');
+
+        // Execute a simple query
+        const result = await connection.execute('SELECT * FROM airport'); // replace 'airport' with your actual table name
+        console.log(result.rows); // log the result
+
     } catch (error) {
         console.error('Error getting database connection:', error);
+    } finally {
+        if (connection) {
+            try {
+                // Close the connection after you're done using it
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
     }
 }
 

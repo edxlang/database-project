@@ -1,26 +1,16 @@
 const oracledb = require('oracledb');
+require('dotenv').config();
 
-async function run() {
-    let connection;
-
+async function runApp() {
     try {
-        connection = await oracledb.getConnection({
+        const connection = await oracledb.getConnection({
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            connectString: `${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.SID}`
+            connectionString: `${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.SID}`
         });
-
-        console.log('Successfully connected to Oracle!');
         return connection;
     } catch (err) {
         console.error(err);
     }
 }
-module.exports = run;
-
-async function executeQuery({ query }) {
-    const connection = await getDbConnection();
-    return await connection.execute(query);
-}
-
-module.exports = executeQuery;
+module.exports = { runApp };
