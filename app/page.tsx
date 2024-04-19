@@ -1,5 +1,6 @@
-import {runApp} from '@/app/db/connect';
+import { runApp } from '@/app/db/connect';
 import oracledb from 'oracledb';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode, Key } from 'react';
 
 async function testDBConnection() {
     let connection;
@@ -8,8 +9,9 @@ async function testDBConnection() {
         console.log('Database connection successful');
 
         // Execute a simple query
-        const result = await connection.execute('SELECT * FROM airport');
+        const result = await connection.execute('SELECT name FROM airport');
         console.log(result.rows); // log the result
+        return result.rows;
 
     } catch (error) {
         console.error('Error getting database connection:', error);
@@ -24,8 +26,8 @@ async function testDBConnection() {
     }
 }
 
-export default function Home() {
-    testDBConnection();
+export default async function Home() {
+    const data = await testDBConnection();
 
     return (
         <div className="bg-white">
@@ -34,17 +36,16 @@ export default function Home() {
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                Welcome to Group 6's Flights Queries Visualization. Click a link in the header to get started.
+                                Welcome to Group 6's Flights Queries Visualization. Click a link in the header to get
+                                started.
                             </h1>
                         </div>
-                        <div className="mt-16 flow-root sm:mt-24">ç
+                        <div className="mt-16 flow-root sm:mt-24">
                             <div
                                 className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 md:-m-4 md:rounded-2xl lg:p-4">
-                                <img
-                                    src="https://assets.toptal.io/images?url=https%3A%2F%2Fbs-uploads.toptal.io%2Fblackfish-uploads%2Fcomponents%2Fblog_post_page%2Fcontent%2Fcover_image_file%2Fcover_image%2F1282568%2Fregular_1708x683_0712-Bad_Practices_in_Database_Design_-_Are_You_Making_These_Mistakes_Dan_Newsletter-f90d29e5d2384eab9f4f76a0a18fa9a8.png"
-                                    alt=""
-                                    className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                                />
+                                {data.map((item: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
+                                    <li key={index}>{item}</li>
+                                ))}
                             </div>
                         </div>
                     </div>
