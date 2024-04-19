@@ -44,7 +44,7 @@ export default async function Home() {
                             <div
                                 className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 md:-m-4 md:rounded-2xl lg:p-4">
                                 {data.map((item: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
-                                    <li key={index}>{item}</li>
+                                    <li key={index} style={{color: 'black'}}>{item}</li>
                                 ))}
                             </div>
                         </div>
